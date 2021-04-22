@@ -2,7 +2,7 @@ FROM alpine
 MAINTAINER "Nono Elvadas" 
 
 
-ENV FLYWAY_VERSION=4.2.0
+ENV FLYWAY_VERSION=7.8.1
 
 ENV FLYWAY_HOME=/opt/flyway/$FLYWAY_VERSION  \
     FLYWAY_PKGS="https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}.tar.gz"
