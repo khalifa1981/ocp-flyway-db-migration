@@ -28,6 +28,6 @@ RUN wget --no-check-certificate  $FLYWAY_PKGS &&\
 VOLUME /var/flyway/data
 
 ENTRYPOINT  cp -f /var/flyway/data/*.sql  $FLYWAY_HOME/sql/ && \
-			cat $FLYWAY_HOME/conf/flyway.conf && \
-			ls -lrt $FLYWAY_HOME/sql/ && \
+			cd $FLYWAY_HOME/ && \
+			ls -lrt sql/ && \
             $FLYWAY_HOME/flyway  baseline migrate info  -user=${DB_USER} -password=${DB_PASSWORD} -url=${DB_URL}
