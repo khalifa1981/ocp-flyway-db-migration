@@ -25,9 +25,9 @@ RUN wget --no-check-certificate  $FLYWAY_PKGS &&\
    mkdir -p /var/flyway/data  && \
    tar -xzf flyway-commandline-$FLYWAY_VERSION.tar.gz -C $FLYWAY_HOME  --strip-components=1
 
+COPY docker-entrypoint.sh /
+RUN chmod 777 /docker-entrypoint.sh
+
 VOLUME /var/flyway/data
 
-ENTRYPOINT  cp -f /var/flyway/data/*.sql  $FLYWAY_HOME/sql/ && \
-			cd $FLYWAY_HOME/ && \
-			ls -lrt sql/ && \
-            $FLYWAY_HOME/flyway  baseline migrate info  -user=${DB_USER} -password=${DB_PASSWORD} -url=${DB_URL}
+ENTRYPOINT ["/docker-entrypoint.sh"]
