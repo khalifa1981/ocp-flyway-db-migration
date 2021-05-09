@@ -8,16 +8,13 @@ BACKUP_FILE=""
 
 if [[ $BACKUP == "ALL" ]] ; then 
 	echo "Take Backup (Data + Schema) for Schema $SCHEMA_NAME"
-	BACKUP_FILE=/var/flyway/data/$SCHEMA_NAME-all-$(date +%d%m%Y).sql
+	BACKUP_FILE=$SCHEMA_NAME-all
+	BACKUP_FILE_PATH=/var/flyway/data/$BACKUP_FILE.sql
    
-	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --schema=$SCHEMA_NAME --clean --create --column-inserts --inserts --quote-all-identifiers  --file=$BACKUP_FILE --format=plain
+	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --schema=$SCHEMA_NAME --blobs --clean --create --column-inserts --inserts --quote-all-identifiers  --file=$BACKUP_FILE_PATH --format=plain
 	echo "Backup is completeted successfuly and save in file $BACKUP_FILE"
-elif [[ $BACKUP == "DATA" ]] ; then
-	echo "Take Backup (Data Only) for Schema $SCHEMA_NAME"
-	BACKUP_FILE=/var/flyway/data/$SCHEMA_NAME-data-$(date +%d%m%Y).sql
 	
-	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --data-only --schema=$SCHEMA_NAME --exclude-table=flyway_schema_history --exclude-table=audit --exclude-table=bot_state_transition  --column-inserts --inserts --disable-triggers --quote-all-identifiers --file=$BACKUP_FILE --format=plain
-	echo "Backup is completeted successfuly and save in file $BACKUP_FILE"
+	zip -r BACKUP_FILE.zip BACKUP_FILE_PATH
 fi
 
 
