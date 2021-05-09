@@ -19,7 +19,7 @@ RUN apk add --update \
         wget \
         bash
 
-RUN apk install zip unzip -y
+RUN apt install zip unzip -y
 
 #Download and flyway
 RUN wget --no-check-certificate  $FLYWAY_PKGS &&\
