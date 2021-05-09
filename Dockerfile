@@ -17,9 +17,9 @@ LABEL com.redhat.component="flyway" \
 RUN apk add --update \
        openjdk8-jre \
         wget \
+        zip \
+        unzip \
         bash
-
-RUN apt install zip unzip -y
 
 #Download and flyway
 RUN wget --no-check-certificate  $FLYWAY_PKGS &&\
