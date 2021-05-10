@@ -19,6 +19,7 @@ RUN apk add --update \
         wget \
         zip \
         unzip \
+        postgresql \
         bash
 
 #Download and flyway
