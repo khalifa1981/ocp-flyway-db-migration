@@ -3,6 +3,7 @@
 cp -f /var/flyway/data/*.sql  $FLYWAY_HOME/sql/
 cd $FLYWAY_HOME/
 ls -lrt sql/
+echo "Current Directory is: $PWD"
 
 BACKUP_FILE=""
 
@@ -12,7 +13,7 @@ if [[ $BACKUP == "ALL" ]] ; then
 	BACKUP_FILE_PATH=/var/flyway/data/$BACKUP_FILE.sql
    	export PGPASSWORD=$DB_PASSWORD
    	echo "PGPASSWORD is: $PGPASSWORD"
-	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --schema=$SCHEMA_NAME --blobs --clean --create --column-inserts --inserts --quote-all-identifiers  --file=$BACKUP_FILE_PATH --format=plain
+	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --schema=$SCHEMA_NAME --blobs --clean --create --column-inserts --inserts --quote-all-identifiers  --file=$BACKUP_FILE.sql --format=plain
 	echo "Backup is completeted successfuly and save in file $BACKUP_FILE"
 	
 	zip -r BACKUP_FILE.zip $BACKUP_FILE_PATH
