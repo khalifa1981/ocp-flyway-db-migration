@@ -14,7 +14,7 @@ if [[ $BACKUP == "ALL" ]] ; then
 	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --schema=$SCHEMA_NAME --blobs --clean --create --column-inserts --inserts --quote-all-identifiers  --file=$BACKUP_FILE_PATH --format=plain
 	echo "Backup is completeted successfuly and save in file $BACKUP_FILE"
 	
-	zip -r BACKUP_FILE.zip BACKUP_FILE_PATH
+	zip -r BACKUP_FILE.zip $BACKUP_FILE_PATH
 fi
 
 
