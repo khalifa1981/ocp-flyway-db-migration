@@ -10,7 +10,8 @@ if [[ $BACKUP == "ALL" ]] ; then
 	echo "Take Backup (Data + Schema) for Schema $SCHEMA_NAME"
 	BACKUP_FILE=$SCHEMA_NAME-all
 	BACKUP_FILE_PATH=/var/flyway/data/$BACKUP_FILE.sql
-   
+   	export PGPASSWORD=$DB_PASSWORD
+   	echo "PGPASSWORD is: $PGPASSWORD"
 	pg_dump -h $DB_HOST -p $DB_PORT -U postgres --dbname=$DB_NAME --schema=$SCHEMA_NAME --blobs --clean --create --column-inserts --inserts --quote-all-identifiers  --file=$BACKUP_FILE_PATH --format=plain
 	echo "Backup is completeted successfuly and save in file $BACKUP_FILE"
 	
