@@ -43,3 +43,5 @@ fi
             
 
 $FLYWAY_HOME/flyway  migrate info  -user=${DB_USER} -password=${DB_PASSWORD} -url=${DB_URL}
+
+while true; do sleep 30; done;
