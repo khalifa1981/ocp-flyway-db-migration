@@ -1,4 +1,4 @@
-FROM alpine 
+FROM public.ecr.aws/a1p3q7r0/alpine:3.12
 MAINTAINER "Nono Elvadas" 
 
 
@@ -19,7 +19,7 @@ RUN apk add --update \
         wget \
         zip \
         unzip \
-        postgresql \
+        postgresql-client \
         bash
 
 #Download and flyway
