@@ -31,7 +31,6 @@ RUN wget --no-check-certificate  $FLYWAY_PKGS &&\
 
 COPY docker-entrypoint.sh /
 RUN chmod 777 /docker-entrypoint.sh
-RUN chmod 777 $FLYWAY_HOME
 
 
 VOLUME /var/flyway/data
