@@ -1,5 +1,8 @@
 #!/bin/bash
 
+getenforce
+echo "Current Directory is: $PWD"
+ls -lrt /var/flyway/data/
 cp -f /var/flyway/data/*.sql  $FLYWAY_HOME/sql/
 cd $FLYWAY_HOME/
 ls -lrt sql/
